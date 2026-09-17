@@ -5,7 +5,6 @@ import { IconArrowRight, IconCalendarEvent, IconCheck, IconHeart, IconLeaf, Icon
 import { serviceGroups, serviceHref } from "../../catalog";
 
 type Props = { params: Promise<{ category: string; service: string }> };
-export const dynamicParams = false;
 export const generateStaticParams = () => serviceGroups.flatMap((group) => group.services.map((service) => ({ category: group.slug, service: service.slug })));
 
 const serviceImages: Record<string, { hero: string; story: string; detail: string }> = {
