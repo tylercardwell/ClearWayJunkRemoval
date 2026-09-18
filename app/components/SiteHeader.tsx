@@ -42,9 +42,10 @@ export default function SiteHeader() {
         <a className="primary-link" href="/how-it-works">How it works</a>
         <a className="primary-link" href="/#impact">Our impact</a>
         <a className="primary-link" href="/#reviews">Reviews</a>
+        <a className="primary-link contact-link" href="/contact">Contact</a>
       </nav>
       <div className="header-actions">
-        <a className="header-cta" href="/#book">Book a pickup</a>
+        <a className="header-cta" href="/contact">Get a quote</a>
       </div>
     </header>
   );

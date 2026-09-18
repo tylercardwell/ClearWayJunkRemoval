@@ -9,6 +9,7 @@ export default function SiteFooter() {
       <a href="/how-it-works">How it works</a>
       <a href="/#impact">Our impact</a>
       <a href="/#reviews">Reviews</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div className="cw-footer-contact">
       <a href="tel:3125550148">(312) 555-0148</a>

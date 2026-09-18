@@ -1,34 +1,44 @@
-**Findings**
+# Contact page design QA
 
-- [P1] Browser-rendered comparison is unavailable.
-  Location: shared service-page closing CTA.
-  Evidence: the selected source visual is the first ideation result at `C:\Users\cardw\.codex\generated_images\01a0a57b-ad55-7d93-be43-348e2c9c673c\exec-0298cca4-006f-49db-bafc-670a1c75c04b.png`; no browser surface is available in this session to capture the implemented route.
-  Impact: the desktop composition, crop, and responsive breakpoint cannot be visually compared with the selected source.
-  Fix: open a service route at a 1440px desktop viewport, capture it, then compare it side-by-side with the source visual.
+## Comparison target
 
-**Open Questions**
+- Source visual truth: user-selected Cobalt Concierge contact-page rendering, also saved as `C:\Users\cardw\.codex\generated_images\01a0b0a0-2348-74d2-901e-e85963adf3ec\exec-ffbb12a0-8797-4feb-aaed-da27da66a869.png`.
+- Implementation route: `/contact`.
+- Intended viewport: desktop, 1440px-wide page.
+- Source image density: generated vertical rendering shown in the conversation.
+- Implementation screenshot: unavailable.
 
-- The implementation intentionally uses the newly generated operational asset at `public/images/clearway-branded-crew-cta.png` rather than a crop of the full UI reference. This preserves a real photo panel at every viewport.
+## Evidence and state
 
-**Implementation Checklist**
+`npm.cmd run build` passes, including TypeScript validation and static generation for `/contact`.
 
-1. Confirm the shared CTA is visible on a representative service route at desktop and mobile widths.
-2. Compare photo crop, panel proportions, typography, lime accent, and CTA button against the source reference.
-3. Test the `Book a pickup` telephone link and confirm no console errors.
+The local development server is running at `http://127.0.0.1:3000/contact`. The configured in-app browser was unavailable during verification (`Browser is not available: iab` and no browser surfaces were returned), so a browser-rendered implementation screenshot and console inspection could not be collected.
 
-**Follow-up Polish**
+The core interaction implemented for review is the form submission path: required inputs are browser-validated, the submit button shows a sending state, and then reports a success state. Header and footer contact links route to `/contact`.
 
-- If the photo crop feels too tight on an individual page, tune `object-position` for that service context.
+## Required fidelity surfaces
 
-**Comparison metadata**
+- Fonts and typography: implemented with the project’s offline system sans fallback, heavyweight uppercase headline, compact tracked labels, and the reference’s oversized editorial hierarchy. Not browser-inspected.
+- Spacing and layout rhythm: implemented as a full-width image hero, asymmetric two-column form/contact region, and wide crew proof section with an overlaid card. Not browser-inspected.
+- Colors and visual tokens: implemented with cobalt blue, lime, warm off-white, charcoal, and blue crew photography. Not browser-inspected.
+- Image quality and asset fidelity: uses a new dedicated Chicago skyline hero image at `public/images/chicago-contact-hero.png` and the existing `public/images/clearway-branded-crew-cta.png` crew photograph. Not browser-inspected.
+- Copy and content: checked in source. No em dashes or placeholder customer names are present.
 
-- Source visual truth path: `C:\Users\cardw\.codex\generated_images\01a0a57b-ad55-7d93-be43-348e2c9c673c\exec-0298cca4-006f-49db-bafc-670a1c75c04b.png`
-- Implementation screenshot path: unavailable; no browser surface is enabled in this session.
-- Target viewport: 1440px desktop; responsive mobile behavior specified in `app/image-content-layout.css`.
-- State: default CTA state.
-- Full-view comparison evidence: blocked because implementation capture is unavailable.
-- Focused-region comparison evidence: blocked because implementation capture is unavailable.
-- Fonts and typography, spacing/layout rhythm, colors/tokens, image quality, and copy/content: implementation reviewed in source code only; visual verification remains required.
-- TypeScript: `npm.cmd exec tsc -- --noEmit` passed.
+## Findings
+
+- [P1] Browser-rendered fidelity comparison blocked.
+  Location: `/contact` desktop and mobile views.
+  Evidence: no available in-app browser surface.
+  Impact: final composition, mobile wrapping, console errors, and visual parity with the source cannot be assessed from a captured render.
+  Fix: open the running local route in an available browser, capture desktop and mobile screenshots, compare them alongside the source rendering, then fix any P0-P2 differences.
+
+## Implementation checklist
+
+- [x] Add `/contact` route with a responsive page structure.
+- [x] Add a functional, accessible front-end form state.
+- [x] Add contact navigation and quote CTA routing.
+- [x] Add dedicated skyline and crew imagery.
+- [x] Pass production build.
+- [ ] Capture and inspect browser-rendered desktop and mobile views.
 
 final result: blocked
